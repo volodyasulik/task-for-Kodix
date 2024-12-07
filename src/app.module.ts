@@ -4,6 +4,8 @@ import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
 
 import { JwtModule } from '@nestjs/jwt';
+import { UserModule } from './modules/user/user.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { JwtModule } from '@nestjs/jwt';
       },
     }),
     ScheduleModule.forRoot(),
+    UserModule,
+    AuthModule,
     JwtModule,
   ],
 })
