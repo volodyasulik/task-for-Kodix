@@ -14,8 +14,8 @@ model User {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    email    String? @unique @db.VarChar(55)
+    email    String @unique @db.VarChar(55)
     password String
 
-    name String?
+    name String
 }

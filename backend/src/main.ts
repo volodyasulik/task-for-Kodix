@@ -1,14 +1,15 @@
-import dotenvFlow from 'dotenv-flow';
+const dotenvFlow = require('dotenv-flow');
 import { ValidationPipe } from '@nestjs/common';
 
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
-import passport from 'passport';
-import session from 'express-session';
+const passport = require('passport');
+const session = require('express-session');
 import { CONFIG } from './modules/common/config.config';
-import cookieParser from 'cookie-parser';
+import { SessionOptions } from 'express-session';
+const cookieParser = require('cookie-parser');
 
 async function bootstrap(): Promise<void> {
   dotenvFlow.config();
@@ -35,7 +36,7 @@ async function bootstrap(): Promise<void> {
   app.use(passport.initialize());
   app.use(cookieParser());
 
-  const sessionSettings: session.SessionOptions = {
+  const sessionSettings: SessionOptions = {
     secret: process.env[CONFIG.SESSION_SECRET]!,
     resave: false,
     saveUninitialized: false,
