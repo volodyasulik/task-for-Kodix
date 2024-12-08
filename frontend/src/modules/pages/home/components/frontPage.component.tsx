@@ -4,9 +4,12 @@ import CartComponent from './cart.component';
 import PresentPost from './presentPost.component';
 import postService, { IPosts } from '../../../services/posts.service';
 import StarIcon from '../../../../assets/icons/empty-star.icon.svg';
+import { useNavigate } from 'react-router-dom';
+import { ROUTER_KEYS } from '../../../const/app-keys.const';
 
 const FrontPageComponent = () => {
   const [posts, setPosts] = useState<IPosts[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -14,12 +17,12 @@ const FrontPageComponent = () => {
         const postsResponse = await postService.getPosts();
         setPosts(postsResponse);
       } catch (err) {
-        console.error('Error fetching posts:', err);
+        navigate(ROUTER_KEYS.all);
       }
     };
 
     fetchPosts();
-  }, []);
+  }, [navigate]);
 
   return (
     <div
