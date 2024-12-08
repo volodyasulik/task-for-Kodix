@@ -13,5 +13,9 @@ export class CreateUserDto {
 
   @IsString()
   @ApiProperty()
-  public name: string = '';
+  public firstName: string = '';
+
+  @IsString()
+  @ApiProperty()
+  public lastName: string = '';
 }

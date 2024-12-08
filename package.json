@@ -6,19 +6,18 @@
     "private": true,
     "license": "UNLICENSED",
     "scripts": {
-        "build": "nest build",
-        "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-        "start": "nest start",
-        "start:dev": "nest start --watch",
-        "start:debug": "nest start --debug --watch",
-        "start:prod": "node dist/main",
-        "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
+        "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+        "start": "concurrently --kill-others --prefix \"[{name}]\" -n backend,frontend \"yarn --cwd backend start\" \"yarn --cwd frontend start\""
     },
-    "dependencies": {},
+    "dependencies": {
+        "@emotion/babel-plugin": "^11.13.5",
+        "@mui/icons-material": "^6.1.10"
+    },
     "devDependencies": {
         "@types/nodemailer": "^6.4.10",
         "@typescript-eslint/eslint-plugin": "^6.4.0",
         "@typescript-eslint/parser": "^6.4.0",
+        "concurrently": "^9.1.0",
         "eslint": "^8.47.0",
         "jest": "^29.6.2",
         "lint-staged": "^14.0.0",

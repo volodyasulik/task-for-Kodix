@@ -17,5 +17,6 @@ model User {
     email    String @unique @db.VarChar(55)
     password String
 
-    name String
+    lastName  String
+    firstName String
 }
