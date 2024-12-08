@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
+import { KEYS_WORDS, ROUTER_KEYS, URLs } from '../const/app-keys.const';
 type SignUpData = {
   password: string;
   email: string;
@@ -25,10 +26,13 @@ class AuthService {
 
   public async SignIn(email: string, password: string): Promise<string> {
     try {
-      const response = await this.apiClient.post('/auth/sign-in', {
-        email,
-        password,
-      });
+      const response = await this.apiClient.post(
+        `/${ROUTER_KEYS.auth}/${ROUTER_KEYS.signIn}`,
+        {
+          email,
+          password,
+        },
+      );
       const token = response.data as string;
       this.handleToken(token);
       return token;
@@ -39,7 +43,10 @@ class AuthService {
 
   public async SignUp(data: SignUpData): Promise<string> {
     try {
-      const response = await this.apiClient.post('/auth/sign-up', data);
+      const response = await this.apiClient.post(
+        `/${ROUTER_KEYS.auth}/${ROUTER_KEYS.signUp}`,
+        data,
+      );
       const token = response.data as string;
       this.handleToken(token);
       return token;
@@ -54,15 +61,15 @@ class AuthService {
   }
 
   private saveToken(token: string): void {
-    localStorage.setItem('jwtToken', token);
+    localStorage.setItem(KEYS_WORDS.jwt, token);
   }
 
   getToken(): string | null {
-    return localStorage.getItem('jwtToken');
+    return localStorage.getItem(KEYS_WORDS.jwt);
   }
 
   logout(): void {
-    localStorage.removeItem('jwtToken');
+    localStorage.removeItem(KEYS_WORDS.jwt);
     this.clearAuthorizationHeader();
   }
 
@@ -87,5 +94,5 @@ class AuthService {
   }
 }
 
-const authService = new AuthService('http://localhost:8080');
+const authService = new AuthService(URLs.backend);
 export default authService;
