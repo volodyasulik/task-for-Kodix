@@ -8,7 +8,11 @@ export class SignUpUserDto {
 
   @IsString()
   @ApiProperty()
-  public name!: string;
+  public firstName!: string;
+
+  @IsString()
+  @ApiProperty()
+  public lastName!: string;
 
   @IsString()
   @ApiProperty()
