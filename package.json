@@ -5,6 +5,10 @@
     "author": "Volodya Sulik",
     "private": true,
     "license": "UNLICENSED",
+    "workspaces": [
+        "frontend",
+        "backend"
+    ],
     "scripts": {
         "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
         "start": "concurrently --kill-others --prefix \"[{name}]\" -n backend,frontend \"yarn --cwd backend start\" \"yarn --cwd frontend start\""
