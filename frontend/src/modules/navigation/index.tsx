@@ -6,17 +6,9 @@ import {
   Navigate,
 } from 'react-router-dom';
 import { ROUTER_KEYS } from '../const/app-keys.const';
-import KodexIcon from '../../assets/icons/star.icon.svg';
 import SignInComponent from '../pages/auth/signInFrom/signIn.component';
 import SignUpComponent from '../pages/auth/sighnUpForm/signUp.component';
-
-const Home = () => (
-  <div>
-    <h1>Home Page</h1>
-    <p>Welcome to the Home page!</p>
-    <img src={KodexIcon} alt="Kodex Icon" style={{ height: '100px' }} />
-  </div>
-);
+import HomeComponent from '../pages/home/home.component';
 
 const NotFound = () => (
   <div>
@@ -30,7 +22,8 @@ export const MainRouter = () => (
     <Routes>
       <Route path="/" element={<Navigate to={ROUTER_KEYS.home} replace />} />
 
-      <Route path={ROUTER_KEYS.home} element={<Home />} />
+      <Route path={ROUTER_KEYS.home} element={<HomeComponent />} />
+      <Route path={`${ROUTER_KEYS.post}/:id`} element={<HomeComponent />} />
 
       <Route path={ROUTER_KEYS.auth}>
         <Route index element={<Navigate to={ROUTER_KEYS.signIn} replace />} />

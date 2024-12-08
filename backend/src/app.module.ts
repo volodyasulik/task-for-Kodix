@@ -6,6 +6,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { JwtModule } from '@nestjs/jwt';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { PostsModule } from './modules/posts/posts.module';
 
 @Module({
   imports: [
@@ -24,9 +25,10 @@ import { AuthModule } from './modules/auth/auth.module';
       },
     }),
     ScheduleModule.forRoot(),
+    JwtModule,
     UserModule,
     AuthModule,
-    JwtModule,
+    PostsModule,
   ],
 })
 export class AppModule {}
