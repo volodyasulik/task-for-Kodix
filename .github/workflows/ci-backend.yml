@@ -1,4 +1,4 @@
-name: Bakend CI
+name: Backend CI
 
 on:
   push:
@@ -21,10 +21,16 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Node
-      - uses: actions/setup-node@v4
+        uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: yarn
-      - run: yarn install
-      - run: npx prisma generate
-      - run: yarn build
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Build project
+        run: yarn build
