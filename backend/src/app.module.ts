@@ -31,5 +31,4 @@ import { PostsModule } from './modules/posts/posts.module';
     PostsModule,
   ],
 })
-
 export class AppModule {}
