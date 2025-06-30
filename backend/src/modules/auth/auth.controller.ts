@@ -23,8 +23,7 @@ export class AuthController {
     description: 'Sign In',
     type: SignInUserDto,
   })
-  public async SignIn(@Body() userData: SignInUserDto): Promise<string> {
+  public async signIn(@Body() userData: SignInUserDto): Promise<{ jwt: string; message: string }> {
     const jwt = await this.authService.signIn(userData);
-    return jwt;
-  }
-}
+    return { jwt, message: 'Signed In' };
+  }}
